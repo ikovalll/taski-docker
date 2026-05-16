@@ -29,6 +29,6 @@ jobs:
         pip install flake8==7.3.0 flake8-isort==7.0.0
     # Запускаем flake8
     - name: Test with flake8
-      # Вызываем flake8 и указываем ему,
+      # Вызываем flake8 и указываем ему.
       # что нужно проверить файлы только в папке backend/
       run: python -m flake8 backend/
