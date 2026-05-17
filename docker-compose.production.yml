@@ -9,11 +9,13 @@ services:
   db:
     image: postgres:13.10
     env_file: .env
+    restart: always
     volumes:
       - pg_data_production:/var/lib/postgresql/data
   backend:
     image: ikovalll/taski_backend # Качаем с Docker Hub
     env_file: .env
+    restart: always
     volumes:
       - static_volume:/backend_static
   frontend:
@@ -25,6 +27,7 @@ services:
   gateway:
     image: ikovalll/taski_gateway  # Качаем с Docker Hub
     env_file: .env
+    restart: always
     volumes:
       - static_volume:/staticfiles/
     ports:
