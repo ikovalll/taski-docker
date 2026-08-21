@@ -117,6 +117,13 @@ On every push to `main` GitHub Actions:
 4. Deploys to the server over SSH and applies migrations and static files
 5. Sends a Telegram notification
 
+> Steps 4–5 run only when the repository variable `DEPLOY_ENABLED` is set
+> to `true`. The server this project was originally deployed to has been
+> decommissioned, so the deploy job is skipped rather than failing on an
+> unreachable host. The full deployment pipeline is kept in
+> `.github/workflows/main.yml` and can be re-enabled by pointing the
+> secrets at a live server.
+
 ---
 
 ## 📄 License

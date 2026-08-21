@@ -132,8 +132,12 @@ jobs:
           # Тут вместо username должен быть ваш логин на Docker Hub
           tags: ikovalll/taski_gateway:latest
 
+  # Запускается только если в настройках репозитория задана переменная
+  # DEPLOY_ENABLED=true. Учебный сервер выведен из эксплуатации, поэтому
+  # по умолчанию задача пропускается, а не падает на попытке подключения.
   deploy:
     runs-on: ubuntu-latest
+    if: vars.DEPLOY_ENABLED == 'true'
     needs: 
       - build_and_push_to_docker_hub
       - build_frontend_and_push_to_docker_hub
@@ -181,6 +185,7 @@ jobs:
 
   send_message:
     runs-on: ubuntu-latest
+    if: vars.DEPLOY_ENABLED == 'true'
     needs: deploy
     steps:
       - name: Send notification
